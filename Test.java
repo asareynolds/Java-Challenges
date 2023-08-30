@@ -225,6 +225,7 @@
 // }
 
 //Reverse an array list in-place
+
 // import java.util.ArrayList;
 // import java.util.Arrays;
 
@@ -296,21 +297,58 @@
 
 //Get input from user, add double to ArrayList, and compute running total
 
-import java.util.ArrayList;
-import java.util.Scanner;
+// import java.util.ArrayList;
+// import java.util.Scanner;
 
-class Test {
+// class Test {
+//     public static void main(String[] args) {
+//         Scanner scan = new Scanner(System.in);
+//         ArrayList<Double> doubleList = new ArrayList<>();
+//         boolean running = true;
+//         double runningTotal = 0;
+//         System.out.println("Running total is now active. Ctrl + C to exit.");
+//         while (running) {
+//             System.out.printf("=%f: ", runningTotal); // prompt user
+//             double numberInput = Double.parseDouble(scan.next()); // convert input to double
+//             doubleList.add(numberInput); // add input to list
+//             runningTotal += numberInput; // update running total
+//         }
+//         scan.close();
+//     }
+// }
+
+////  Test if given string is a palindrome (ignore spaces and punctuation)
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Test {
+    // removes spaces, capitalization, and punctuation, returns string of characters
+    public static String flattenText(String input) {
+        input = input.trim();
+        input = input.toLowerCase();
+        input = input.replaceAll("[\\p{Punct}\\s]", "");
+        return input;
+    }
+
+    // checks if a given string is equal to itself, backwards
+    public static Boolean checkPalindrome(String input) {
+        Character[] inputForwards = new Character[input.length()]; // array to store forward word
+        Character[] inputBackwards = new Character[input.length()]; // array to store backward word
+        for (int i = 0, j = input.length() - 1; i < input.length(); i++, j--) {
+            inputForwards[i] = input.charAt(i);
+            inputBackwards[i] = input.charAt(j);
+        }
+        return Arrays.equals(inputForwards, inputBackwards);
+    }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        ArrayList<Double> doubleList = new ArrayList<>();
-        boolean running = true;
-        double runningTotal = 0;
-        System.out.println("Running total is now active. Ctrl + C to exit.");
-        while (running) {
-            System.out.printf("=%f: ", runningTotal); // prompt user
-            double numberInput = Double.parseDouble(scan.next()); // convert input to double
-            doubleList.add(numberInput); // add input to list
-            runningTotal += numberInput; // update running total
+        System.out.print("Enter a string to check: ");
+        String input = scan.nextLine();
+        if (checkPalindrome(flattenText(input))) {
+            System.out.println("The string is a palindrome.");
+        } else {
+            System.out.println("The string is not a palindrome.");
         }
         scan.close();
     }
