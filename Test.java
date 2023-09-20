@@ -318,38 +318,80 @@
 // }
 
 ////  Test if given string is a palindrome (ignore spaces and punctuation)
-import java.util.Scanner;
-import java.util.Arrays;
+// import java.util.Scanner;
+// import java.util.Arrays;
 
-public class Test {
-    // removes spaces, capitalization, and punctuation, returns string of characters
-    public static String flattenText(String input) {
-        input = input.trim();
-        input = input.toLowerCase();
-        input = input.replaceAll("[\\p{Punct}\\s]", "");
-        return input;
-    }
+// public class Test {
+//     // removes spaces, capitalization, and punctuation, returns string of characters
+//     public static String flattenText(String input) {
+//         input = input.trim();
+//         input = input.toLowerCase();
+//         input = input.replaceAll("[\\p{Punct}\\s]", "");
+//         return input;
+//     }
 
-    // checks if a given string is equal to itself, backwards
-    public static Boolean checkPalindrome(String input) {
-        Character[] inputForwards = new Character[input.length()]; // array to store forward word
-        Character[] inputBackwards = new Character[input.length()]; // array to store backward word
-        for (int i = 0, j = input.length() - 1; i < input.length(); i++, j--) {
-            inputForwards[i] = input.charAt(i);
-            inputBackwards[i] = input.charAt(j);
-        }
-        return Arrays.equals(inputForwards, inputBackwards);
-    }
+//     // checks if a given string is equal to itself, backwards
+//     public static Boolean checkPalindrome(String input) {
+//         Character[] inputForwards = new Character[input.length()]; // array to store forward word
+//         Character[] inputBackwards = new Character[input.length()]; // array to store backward word
+//         for (int i = 0, j = input.length() - 1; i < input.length(); i++, j--) {
+//             inputForwards[i] = input.charAt(i);
+//             inputBackwards[i] = input.charAt(j);
+//         }
+//         return Arrays.equals(inputForwards, inputBackwards);
+//     }
 
+//     public static void main(String[] args) {
+//         Scanner scan = new Scanner(System.in);
+//         System.out.print("Enter a string to check: ");
+//         String input = scan.nextLine();
+//         if (checkPalindrome(flattenText(input))) {
+//             System.out.println("The string is a palindrome.");
+//         } else {
+//             System.out.println("The string is not a palindrome.");
+//         }
+//         scan.close();
+//     }
+// }
+
+//// Three functions to compute the sum of list numbers with a for-loop, while-loop, and recursion:
+public class Test{
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Enter a string to check: ");
-        String input = scan.nextLine();
-        if (checkPalindrome(flattenText(input))) {
-            System.out.println("The string is a palindrome.");
-        } else {
-            System.out.println("The string is not a palindrome.");
+        int[] numList = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; // integer list of length 15 with values
+        int forSum = 0;
+        int whileSum = 0;
+        int recursionSum = 0;
+        for (int i = 0; i < numList.length; i++){
+            forSum += numList[i];
         }
-        scan.close();
+        int whileCount = 0; // count variable for while loop
+        while (whileCount < numList.length){
+            whileSum += numList[whileCount];
+            whileCount ++;
+        }
+        recursionSum = sumList(numList, 0);
+        System.out.printf("For-Loop Count: %d", forSum);
+        System.out.printf("\nWhile-Loop Count: %d", whileSum);
+        System.out.printf("\nRecursion Count: %d", recursionSum);
+    }
+
+    //unused recursive demo (from internet, used as reference)
+    public static int recursionDemo(int input){
+        if (input > 0) {
+            return input + recursionDemo(input - 1);
+        }
+        else {
+            return 0;
+        }
+    }
+
+    //class to recursively add list elements
+    public static int sumList(int[] inputList, int index){
+        if (index < inputList.length){
+            int returnValue = inputList[index] + sumList(inputList, index + 1);
+            return returnValue;
+        } else {
+            return 0;
+        }
     }
 }
