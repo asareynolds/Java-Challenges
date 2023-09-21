@@ -465,30 +465,84 @@
 // }
 
 //// Alternately combine two lists of strings, abc 123 to a1b2c3
-public class Test{
-    public static void main(String[] args){
-        String[] list1 = new String[]{"a", "b", "c"};
-        String[] list2 = new String[]{"1", "2", "3"};
+// public class Test{
+//     public static void main(String[] args){
+//         String[] list1 = new String[]{"a", "b", "c"};
+//         String[] list2 = new String[]{"1", "2", "3"};
+//         int totalLength = list1.length + list2.length;
+//         String[] combinedList = new String[totalLength];
+//         for (int i = 0; i < totalLength; i ++){
+//             if (i % 2 == 0){
+//                 combinedList[i] = list1[i/2];
+//             } else {
+//                 combinedList[i] = list2[(i-1)/2];
+//             }
+//         }
+//         System.out.print("List 1: ");
+//         for (String s: list1){
+//             System.out.print(s);
+//         }
+//         System.out.print("\nList 2: ");
+//         for (String s: list2){
+//             System.out.print(s);
+//         }
+//         System.out.print("\nAlternately Combined: ");
+//         for (String s : combinedList){
+//             System.out.print(s);
+//         }
+//     }
+// }
+
+//// Merge two sorted lists of the same length into a new sorted list: [1,4,6],[2,3,5] → [1,2,3,4,5,6] - should be done faster than cat & sort
+public class Test {
+    public static void main(String[] args) {
+        int[] list1 = new int[] { 1, 5 };
+        int[] list2 = new int[] { 2, 7 };
         int totalLength = list1.length + list2.length;
-        String[] combinedList = new String[totalLength];
-        for (int i = 0; i < totalLength; i ++){
-            if (i % 2 == 0){
-                combinedList[i] = list1[i/2];
+        int[] sortedList = new int[totalLength];
+        boolean finished = false;
+        boolean count1done = false;
+        boolean count2done = false;
+        int count1 = 0;
+        int count2 = 0;
+        int countSorted = 0;
+        while (!finished) {
+            if (count1 >= list1.length - 1) {
+                sortedList[countSorted] = list2[count2];
+                count2++;
+                System.out.println("test1");
+            }
+            if (count2 >= list2.length - 1) {
+                sortedList[countSorted] = list1[count1];
+                count1++;
+                System.out.println("test2");
+            }
+            if (!count1done){
+            int n1 = list1[count1];
+            }
+            if (!count2done){
+            int n2 = list2[count2];
+            }
+            if (n1 < n2) {
+                sortedList[countSorted] = n1;
+                if (count1 < list1.length - 1) {
+                    count1++;
+                    System.out.println("Incrementing count1");
+                }
             } else {
-                combinedList[i] = list2[(i-1)/2];
+                sortedList[countSorted] = n2;
+                if (count2 < list2.length - 1) {
+                    System.out.println("Incrementing count2");
+                    count2++;
+                }
+            }
+            countSorted++;
+            if (countSorted == totalLength) {
+                finished = true;
             }
         }
-        System.out.print("List 1: ");
-        for (String s: list1){
-            System.out.print(s);
-        }
-        System.out.print("\nList 2: ");
-        for (String s: list2){
-            System.out.print(s);
-        }
-        System.out.print("\nAlternately Combined: ");
-        for (String s : combinedList){
-            System.out.print(s);
+        for (int i : sortedList) {
+            System.err.println(i);
         }
     }
 }
