@@ -493,56 +493,64 @@
 //     }
 // }
 
-//// Merge two sorted lists of the same length into a new sorted list: [1,4,6],[2,3,5] → [1,2,3,4,5,6] - should be done faster than cat & sort
+//// Merge two sorted lists (length-independent) into a new sorted list: [1,4,6],[2,3,5] → [1,2,3,4,5,6] - should be done faster than cat & sort
 public class Test {
     public static void main(String[] args) {
-        int[] list1 = new int[] { 1, 5 };
-        int[] list2 = new int[] { 2, 7 };
+        int[] list1 = new int[] { 1, 5, 9, 10 };
+        int[] list2 = new int[] { 2, 6, 8, 51, 100 };
         int totalLength = list1.length + list2.length;
         int[] sortedList = new int[totalLength];
-        boolean finished = false;
-        boolean count1done = false;
-        boolean count2done = false;
+
         int count1 = 0;
         int count2 = 0;
-        int countSorted = 0;
-        while (!finished) {
-            if (count1 >= list1.length - 1) {
-                sortedList[countSorted] = list2[count2];
-                count2++;
-                System.out.println("test1");
-            }
-            if (count2 >= list2.length - 1) {
-                sortedList[countSorted] = list1[count1];
-                count1++;
-                System.out.println("test2");
-            }
-            if (!count1done){
-            int n1 = list1[count1];
-            }
-            if (!count2done){
-            int n2 = list2[count2];
-            }
-            if (n1 < n2) {
-                sortedList[countSorted] = n1;
-                if (count1 < list1.length - 1) {
-                    count1++;
-                    System.out.println("Incrementing count1");
+
+        int sortedListCount = 0;
+
+        int num1 = 0;
+        int num2 = 0;
+
+        boolean isDone = false;
+
+        while (!isDone) { // while running
+            if (count1 <= list1.length - 1 && count2 <= list2.length - 1) { // if neither list exhausted
+                num1 = list1[count1]; // get num1
+                num2 = list2[count2]; // get num2
+                if (num1 < num2) { // if num1 is smaller
+                    sortedList[sortedListCount] = num1; // add num1 to the list
+                    count1++; // increment counter for list1
                 }
-            } else {
-                sortedList[countSorted] = n2;
-                if (count2 < list2.length - 1) {
-                    System.out.println("Incrementing count2");
-                    count2++;
+                if (num1 > num2) { // if num2 is smaller
+                    sortedList[sortedListCount] = num2; // add num2 to the list
+                    count2++; // increment counter for list2
+                }
+                if (num1 == num2) { // if num1 == num2
+                    sortedList[sortedListCount] = num1; // add num1 to the list
+                    count1++; // increment counter for list1
+                }
+            } else { // if at least one list exhausted
+                if (count1 > list1.length - 1 && count2 > list2.length - 1) { // if both lists exhausted
+                    isDone = true; // end program
+                } else { // if only one list exhausted
+                    if (count1 > list1.length - 1) { // if list1 exhausted
+                        // add and increment from list 2
+                        num2 = list2[count2];
+                        sortedList[sortedListCount] = num2;
+                        count2++;
+                    } else { // 'else' prevents both from executing in one loop
+                        if (count2 > list2.length - 1) { // if list2 exhausted
+                            // add and increment from list 1
+                            num1 = list1[count1];
+                            sortedList[sortedListCount] = num1;
+                            count1++;
+                        }
+                    }
                 }
             }
-            countSorted++;
-            if (countSorted == totalLength) {
-                finished = true;
-            }
+            sortedListCount++;
         }
+
         for (int i : sortedList) {
-            System.err.println(i);
+            System.out.printf("%d ", i);
         }
     }
 }
