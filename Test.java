@@ -400,36 +400,66 @@
 ////note: the challenge is unclear here -- I decided to interpret this as:
 ////"Find all instances of the listed operations below a specific bound"
 
-import java.util.ArrayList;
-import java.util.Scanner;
+// import java.util.ArrayList;
+// import java.util.Scanner;
 
-public class Test{
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+// public class Test{
+//     public static void main(String[] args) {
+//         Scanner scan = new Scanner(System.in);
 
-        ArrayList<Integer> squareList = new ArrayList<>();
-        ArrayList<Integer> expList = new ArrayList<>();
-        
-        System.out.print("Square and exponentiation to (int): ");
-        int targetNum = scan.nextInt();
+//         ArrayList<Integer> squareList = new ArrayList<>();
+//         ArrayList<Integer> expList = new ArrayList<>();
 
-        int expNext = 1; // next exponentiation to check for
-        for (int i = 1, expCount = 1; i <= targetNum; i++){
-            if(Math.sqrt(i) % 1 == 0){ // check for square root
-                squareList.add(i);
-            }
-            if(i == expNext){ // if the current number is the targeted exponentiation
-                expList.add(i);
-                expCount++;
-                expNext = (int) Math.pow(expCount,expCount); // set the next desired exponentiation 
-                //(this works because exponentiation increases much faster than the linear count of the for loop)
+//         System.out.print("Square and exponentiation to (int): ");
+//         int targetNum = scan.nextInt();
+
+//         int expNext = 1; // next exponentiation to check for
+//         for (int i = 1, expCount = 1; i <= targetNum; i++){
+//             if(Math.sqrt(i) % 1 == 0){ // check for square root
+//                 squareList.add(i);
+//             }
+//             if(i == expNext){ // if the current number is the targeted exponentiation
+//                 expList.add(i);
+//                 expCount++;
+//                 expNext = (int) Math.pow(expCount,expCount); // set the next desired exponentiation 
+//                 //(this works because exponentiation increases much faster than the linear count of the for loop)
+//             }
+//         }
+//         //print output
+//         System.out.print("Squares:        ");
+//         System.out.println(squareList);
+//         System.out.print("Exponentiation: ");
+//         System.out.println(expList);
+//         scan.close();
+//     }
+// }
+
+//// Contacenate two lists of strings
+
+public class Test {
+    public static void main(String[] args){
+        String[] list1 = new String[]{"a", "b", "c"};
+        String[] list2 = new String[]{"1", "2", "3"};
+        int totalLength = list1.length + list2.length;
+        String[] combinedList = new String[totalLength];
+        for (int i = 0; i < totalLength; i++){
+            if (i < list1.length){
+                combinedList[i] = list1[i];
+            } else {
+                combinedList[i] = list2[i-list1.length];
             }
         }
-        //print output
-        System.out.print("Squares:        ");
-        System.out.println(squareList);
-        System.out.print("Exponentiation: ");
-        System.out.println(expList);
-        scan.close();
+        System.out.print("List 1: ");
+        for (String s: list1){
+            System.out.print(s);
+        }
+        System.out.print("\nList 2: ");
+        for (String s: list2){
+            System.out.print(s);
+        }
+        System.out.print("\nCombined: ");
+        for (String s : combinedList){
+            System.out.print(s);
+        }
     }
 }
