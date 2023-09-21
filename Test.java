@@ -434,19 +434,48 @@
 //     }
 // }
 
-//// Contacenate two lists of strings
+//// Contacenate two lists of strings, abc 123 to abc123
 
-public class Test {
+// public class Test {
+//     public static void main(String[] args){
+//         String[] list1 = new String[]{"a", "b", "c"};
+//         String[] list2 = new String[]{"1", "2", "3"};
+//         int totalLength = list1.length + list2.length;
+//         String[] combinedList = new String[totalLength];
+//         for (int i = 0; i < totalLength; i++){
+//             if (i < list1.length){
+//                 combinedList[i] = list1[i];
+//             } else {
+//                 combinedList[i] = list2[i-list1.length];
+//             }
+//         }
+//         System.out.print("List 1: ");
+//         for (String s: list1){
+//             System.out.print(s);
+//         }
+//         System.out.print("\nList 2: ");
+//         for (String s: list2){
+//             System.out.print(s);
+//         }
+//         System.out.print("\nCombined: ");
+//         for (String s : combinedList){
+//             System.out.print(s);
+//         }
+//     }
+// }
+
+//// Alternately combine two lists of strings, abc 123 to a1b2c3
+public class Test{
     public static void main(String[] args){
         String[] list1 = new String[]{"a", "b", "c"};
         String[] list2 = new String[]{"1", "2", "3"};
         int totalLength = list1.length + list2.length;
         String[] combinedList = new String[totalLength];
-        for (int i = 0; i < totalLength; i++){
-            if (i < list1.length){
-                combinedList[i] = list1[i];
+        for (int i = 0; i < totalLength; i ++){
+            if (i % 2 == 0){
+                combinedList[i] = list1[i/2];
             } else {
-                combinedList[i] = list2[i-list1.length];
+                combinedList[i] = list2[(i-1)/2];
             }
         }
         System.out.print("List 1: ");
@@ -457,7 +486,7 @@ public class Test {
         for (String s: list2){
             System.out.print(s);
         }
-        System.out.print("\nCombined: ");
+        System.out.print("\nAlternately Combined: ");
         for (String s : combinedList){
             System.out.print(s);
         }
