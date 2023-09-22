@@ -579,21 +579,49 @@
 
 ////Write a function that computes the list of the first n Fibonacci numbers.
 
+// public class Test{
+//     public static void main(String[] args){
+//         long[] fibonacciList = getFibonacci(80);
+//         for (long i : fibonacciList){
+//             System.out.printf("%d ", i);
+//         }
+//     }
+
+//     private static long[] getFibonacci(int count) {
+//         long[] list = new long[count];
+//         list [0] = 0;
+//         list [1] = 1;
+//         for (int i = 2; i < count; i++){
+//             list[i] = list[i-1] + list[i-2]; 
+//         }
+//         return list;
+//     }
+// }
+
+////Write a function that takes a number and returns a list of its digits, ex: 4565 --> [4,5,6,5]
+////Personal interpretation: digits should be integers, not chars
+
+import java.util.Scanner;
+
 public class Test{
-    public static void main(String[] args){
-        long[] fibonacciList = getFibonacci(80);
-        for (long i : fibonacciList){
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        Integer input = scan.nextInt(); // get input as Integer
+        int[] intList = intToList(input); // convert input to list
+        for (int i : intList){
             System.out.printf("%d ", i);
         }
+        scan.close();
     }
-
-    private static long[] getFibonacci(int count) {
-        long[] list = new long[count];
-        list [0] = 0;
-        list [1] = 1;
-        for (int i = 2; i < count; i++){
-            list[i] = list[i-1] + list[i-2]; 
+    public static int[] intToList(Integer input){ // uses Integer type to convert to string
+        String intString = input.toString(); // convert Integer to String
+        int[] output = new int[intString.length()];
+        int iterator = 0;
+        for (char s : intString.toCharArray()){
+            output[iterator] = (int) s - '0'; // cast char to int, '0' necessary for finding ASCII value)
+            iterator++;
         }
-        return list;
+        return output;
     }
 }
