@@ -556,24 +556,44 @@
 // }
 
 //// Write a function that rotates a list by n elements. For example, [1,2,3,4,5,6] rotated by two becomes [3,4,5,6,1,2].
+// public class Test {
+//     public static void main(String[] args) {
+//         int[] list1 = new int[] { 10, 20, 30, 40, 50, 60, 70, 81 };
+//         list1 = rotateIntList(list1, 2);
+//         for (int i : list1){
+//             System.out.printf("%d ", i);
+//         }
+//     }
+//     public static int[] rotateIntList(int inputList[], int rotateNum){ // rotates an integer list
+//         int tempList[] = new int[inputList.length]; // create temporary list with same length
+//         for (int i = 0; i <= inputList.length-1; i++){
+//             int newIndex = i + rotateNum;
+//             while (newIndex > (inputList.length-1)){ // 'while' rather than 'if' means the rotate value can be longer than the list length
+//                 newIndex = newIndex - (inputList.length);
+//             }
+//             tempList[newIndex] = inputList[i];
+//         }
+//         return tempList;
+//     }
+// }
 
-public class Test {
-    public static void main(String[] args) {
-        int[] list1 = new int[] { 10, 20, 30, 40, 50, 60, 70, 81 };
-        list1 = rotateIntList(list1, 2);
-        for (int i : list1){
+////Write a function that computes the list of the first n Fibonacci numbers.
+
+public class Test{
+    public static void main(String[] args){
+        long[] fibonacciList = getFibonacci(80);
+        for (long i : fibonacciList){
             System.out.printf("%d ", i);
         }
     }
-    public static int[] rotateIntList(int inputList[], int rotateNum){ // rotates an integer list
-        int tempList[] = new int[inputList.length]; // create temporary list with same length
-        for (int i = 0; i <= inputList.length-1; i++){
-            int newIndex = i + rotateNum;
-            while (newIndex > (inputList.length-1)){ // 'while' rather than 'if' means the rotate value can be longer than the list length
-                newIndex = newIndex - (inputList.length);
-            }
-            tempList[newIndex] = inputList[i];
+
+    private static long[] getFibonacci(int count) {
+        long[] list = new long[count];
+        list [0] = 0;
+        list [1] = 1;
+        for (int i = 2; i < count; i++){
+            list[i] = list[i-1] + list[i-2]; 
         }
-        return tempList;
+        return list;
     }
 }
